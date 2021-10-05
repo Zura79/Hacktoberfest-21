@@ -1,0 +1,32 @@
+var people = {
+    list: [],
+
+    initialize: function() {
+
+        $(this).on("person.added", this.render.bind(this));
+
+    },
+
+    add: function (person) {
+
+        this.list.push(person);
+
+        $(this).trigger("person.added", [person]);
+
+    },
+
+    render: function(e, person) {
+
+        $("#numberOfPeople").html(this.list.length);
+
+        $("#lastPersonAdded").html(person.name);
+
+    }
+
+};
+
+people.initialize();
+
+people.add({ name: "Brendan Eich" });
+
+people.add({ name: "John Resig" });
